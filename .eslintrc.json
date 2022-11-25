@@ -29,6 +29,7 @@
     "react/style-prop-object":  "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-no-bind":"off",
+    "react/no-array-index-key":"off",
     "react/jsx-filename-extension": [1, {
       "extensions": [
         ".ts",
