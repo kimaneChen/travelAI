@@ -1,31 +1,56 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  FlatList,
+} from 'react-native';
 
 export default function App() {
+  interface courseGoal {
+    text: string;
+    id: string;
+  }
   const [enteredGoalText, setEnteredGoalText] = useState<string>('');
-  const [courseGoals, setCourseGoals] = useState<string[]>([]);
+  const [courseGoals, setCourseGoals] = useState<courseGoal[]>([]);
 
   function goalInputHandler(enteredText: string) {
     setEnteredGoalText(enteredText);
   }
   const addGoalHandler = () => {
-    setCourseGoals(currentCourseGoals => [...currentCourseGoals, enteredGoalText]);
+    setCourseGoals((currentCourseGoals) => [
+      ...(currentCourseGoals || []),
+      { text: enteredGoalText, id: Math.random().toString() },
+    ]);
   };
 
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder="Your course goal!..." onChangeText={goalInputHandler} />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Your course goal!..."
+          onChangeText={goalInputHandler}
+        />
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
-          {courseGoals.map((goal, index) => (
-            <View key={`course-${index}`} style={styles.goalItem}>
-              <Text style={styles.goalText}>{goal}</Text>
-            </View>
-          ))}
-        </ScrollView>
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
+            return (
+              <View style={styles.goalItem}>
+                <Text style={styles.goalText}>{itemData.item.text}</Text>
+              </View>
+            );
+          }}
+          alwaysBounceVertical={false}
+          keyExtractor={(item) => {
+            return item.id;
+          }}
+        />
       </View>
     </View>
   );
