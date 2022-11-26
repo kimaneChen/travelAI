@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export interface courseGoalItem {
+export interface GoalItemProps {
   text: string;
 }
 
-function GoalItem(props: courseGoalItem) {
+function GoalItem(props: GoalItemProps) {
   const { text } = props;
   return (
     <View style={styles.goalItem}>

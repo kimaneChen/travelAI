@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 
-import GoalItem, { courseGoalItem } from './components/GoalItem';
+import GoalItem, { GoalItemProps } from './components/GoalItem';
 import GoalInput from './components/GoalInput';
 
-interface courseGoal extends courseGoalItem {
+interface GoalProps extends GoalItemProps {
   id: string;
 }
 export default function App() {
-  const [courseGoals, setCourseGoals] = useState<courseGoal[]>([]);
+  const [courseGoals, setCourseGoals] = useState<GoalProps[]>([]);
 
   const addGoalHandler = (enteredGoalText: string) => {
     setCourseGoals((currentCourseGoals) => [
