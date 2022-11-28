@@ -9,28 +9,41 @@ function PrimaryButton(props: {
     console.log('eeee');
   }
   return (
-    <Pressable onPress={pressHandler} style={styles.container}>
-      <View>
+    <View style={styles.outerContainer}>
+      <Pressable
+        onPress={pressHandler}
+        style={({ pressed }) =>
+          pressed
+            ? [styles.innerContainer, styles.pressed]
+            : styles.innerContainer
+        }
+        android_ripple={{ color: 'white' }}
+      >
         <Text style={styles.buttonText}>{children}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 }
 
 export default PrimaryButton;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#72063c',
-    borderRadius: 28,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    elevation: 2,
+  outerContainer: {
+    borderRadius: 40,
     margin: 4,
+    overflow: 'hidden',
+  },
+  innerContainer: {
+    backgroundColor: '#72063c',
+    paddingVertical: 8,
+    elevation: 2,
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
+  },
+  pressed: {
+    opacity: 0.75,
   },
 });
