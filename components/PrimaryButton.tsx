@@ -3,11 +3,13 @@ import { View, Text, Pressable, StyleSheet } from 'react-native';
 
 function PrimaryButton(props: {
   children: ReactElement | ReactElement[] | string | number;
+  onPress: () => void;
 }) {
-  const { children } = props;
+  const { children, onPress } = props;
   function pressHandler() {
-    console.log('eeee');
+    console.log('Pressed');
   }
+
   return (
     <View style={styles.outerContainer}>
       <Pressable
@@ -29,7 +31,7 @@ export default PrimaryButton;
 
 const styles = StyleSheet.create({
   outerContainer: {
-    borderRadius: 40,
+    borderRadius: 28,
     margin: 4,
     overflow: 'hidden',
   },
@@ -37,6 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#72063c',
     paddingVertical: 8,
     elevation: 2,
+    paddingHorizontal: 16,
   },
   buttonText: {
     color: 'white',
