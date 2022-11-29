@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
+import Colors from './constants/color';
 
 export default function App() {
   const [userNumber, setUserNumber] = useState<number | undefined>();
@@ -15,11 +16,15 @@ export default function App() {
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
   if (userNumber) {
-    screen = <GameScreen />;
+    console.log(userNumber);
+    screen = <GameScreen userNumber={userNumber} />;
   }
 
   return (
-    <LinearGradient colors={['#72063c', '#ddb52f']} style={styles.appContainer}>
+    <LinearGradient
+      colors={[Colors.primary700, Colors.accent500]}
+      style={styles.appContainer}
+    >
       <ImageBackground
         // eslint-disable-next-line global-require
         source={require('./assets/images/background.png')}

@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 
+import Colors from '../../constants/color';
+
 function PrimaryButton(props: {
   children: ReactElement | ReactElement[] | string | number;
   onPress: () => void;
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   innerContainer: {
-    backgroundColor: '#72063c',
+    backgroundColor: Colors.primary500,
     paddingVertical: 8,
     elevation: 2,
     paddingHorizontal: 16,
