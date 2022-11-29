@@ -27,7 +27,7 @@ export default function App() {
         style={styles.imageBackground}
         imageStyle={styles.bacgroundImage}
       >
-        <SafeAreaView>{screen}</SafeAreaView>
+        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );
@@ -42,5 +42,8 @@ const styles = StyleSheet.create({
   },
   bacgroundImage: {
     opacity: 0.15,
+  },
+  rootScreen: {
+    flex: 1,
   },
 });

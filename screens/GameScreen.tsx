@@ -1,12 +1,14 @@
 import { View, Text, StyleSheet } from 'react-native';
 
+import Title from '../components/Title';
+
 function GameScreen() {
   return (
-    <View>
-      <Text>{`Opponent's Guess`}</Text>
+    <View style={styles.gameScreen}>
+      <Title>{`Opponent's Guess`}</Title>
       <Text>GUESS</Text>
       <View>
-        <Text>Higer or Lowr ?</Text>
+        <Text>Higer or Lower ?</Text>
         <Text> + -</Text>
       </View>
       <View>
@@ -17,3 +19,10 @@ function GameScreen() {
 }
 
 export default GameScreen;
+
+const styles = StyleSheet.create({
+  gameScreen: {
+    flex: 1,
+    padding: 24,
+  },
+});
