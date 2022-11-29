@@ -7,7 +7,6 @@ function PrimaryButton(props: {
 }) {
   const { children, onPress } = props;
   function pressHandler() {
-    console.log('press');
     onPress();
   }
 
