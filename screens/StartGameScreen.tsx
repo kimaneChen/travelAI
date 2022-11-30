@@ -40,7 +40,9 @@ function StartGameScreen(props: StartGameScreenProps) {
     <View style={styles.rootContainer}>
       <Title>Guess My Number</Title>
       <Card>
-        <InstructionText>Input a Number</InstructionText>
+        <InstructionText style={styles.instructionText}>
+          Input a Number
+        </InstructionText>
         <TextInput
           style={styles.input}
           maxLength={2}
@@ -81,6 +83,9 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  instructionText: {
+    marginBottom: 12,
   },
   buttonsContainer: {
     flexDirection: 'row',

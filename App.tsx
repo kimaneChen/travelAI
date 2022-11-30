@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts } from 'expo-font';
 
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
@@ -11,6 +12,8 @@ import Colors from './constants/color';
 export default function App() {
   const [userNumber, setUserNumber] = useState<number | undefined>();
   const [gameIsOver, setGameIsOver] = useState(false);
+
+  useFonts();
 
   function pickedNumberHandler(pickedNumber: number) {
     setUserNumber(pickedNumber);

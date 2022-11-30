@@ -1,14 +1,15 @@
-import { ReactElement } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { ReactNode } from 'react';
+import { Text, StyleSheet, TextStyle } from 'react-native';
 
 import Colors from '../../constants/color';
 
 export interface CardProps {
-  children: ReactElement | ReactElement[] | string | number | undefined | null;
+  children: ReactNode | undefined;
+  style: TextStyle | undefined;
 }
 
-function InstructionText({ children }: CardProps) {
-  return <Text style={styles.instruction}>{children}</Text>;
+function InstructionText({ children, style }: CardProps) {
+  return <Text style={[styles.instruction, style]}>{children}</Text>;
 }
 
 export default InstructionText;
