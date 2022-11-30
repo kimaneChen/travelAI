@@ -1,24 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
 
 import Title from '../components/ui/Title';
 import generateRandomBetween from '../utils/generateRandomBetween';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import Card from '../components/ui/card';
+import InstructionText from '../components/ui/InstructionText';
 
 export interface GameScreenProps {
   userNumber: number;
+  onGameOver: () => void;
 }
 
 let minBoundary = 1;
 let maxBoundary = 100;
-function GameScreen(this: unknown, { userNumber }: GameScreenProps) {
+function GameScreen(
+  this: unknown,
+  { userNumber, onGameOver }: GameScreenProps,
+) {
   const initialGuess = generateRandomBetween(
     minBoundary,
     maxBoundary,
     userNumber,
   );
-  const [currentGuess, setCurrentGuess] = useState(userNumber);
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+      onGameOver();
+    }
+  }, [currentGuess, onGameOver, userNumber]);
 
   function nextGuessHandler(direction: string) {
     if (
@@ -33,9 +45,8 @@ function GameScreen(this: unknown, { userNumber }: GameScreenProps) {
     if (direction === 'lower') {
       maxBoundary = currentGuess;
     } else {
-      minBoundary = currentGuess + 1;
+      minBoundary = currentGuess;
     }
-    console.log('---', maxBoundary, minBoundary);
     const newRndNumber = generateRandomBetween(
       minBoundary,
       maxBoundary,
@@ -48,8 +59,8 @@ function GameScreen(this: unknown, { userNumber }: GameScreenProps) {
     <View style={styles.gameScreen}>
       <Title>{`Opponent's Guess`}</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>Higer or Lower ?</Text>
+      <Card>
+        <InstructionText>Higher or Lower ?</InstructionText>
         <View style={styles.buttons}>
           <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
             -
@@ -58,7 +69,7 @@ function GameScreen(this: unknown, { userNumber }: GameScreenProps) {
             +
           </PrimaryButton>
         </View>
-      </View>
+      </Card>
       <View>
         <Text>LOG ROUND</Text>
       </View>
