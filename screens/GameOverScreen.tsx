@@ -1,7 +1,14 @@
-import { Text } from 'react-native';
+/* eslint-disable global-require */
+import { Image, View } from 'react-native';
+
+import Title from '../components/ui/Title';
 
 function GameOverScreen() {
-  return <Text>Game is Over</Text>;
+  return;
+  <View>
+    <Title>Game Over!</Title>
+    <Image source={require('../assets/images/success.png')} />
+  </View>;
 }
 
 export default GameOverScreen;
