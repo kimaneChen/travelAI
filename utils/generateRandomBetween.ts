@@ -4,6 +4,9 @@ export default function generateRandomBetween(
   exclude: number,
 ): number {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
+  if (max - min < 2) {
+    return min;
+  }
   if (rndNum === exclude) {
     return generateRandomBetween(min, max, exclude);
   }
