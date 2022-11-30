@@ -1,10 +1,12 @@
 /* eslint-disable global-require */
-import { Image, View, StyleSheet } from 'react-native';
+import { Image, View, StyleSheet, Text } from 'react-native';
+
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 import Title from '../components/ui/Title';
 import Colors from '../constants/color';
 
-function GameOverScreen() {
+function GameOverScreen({ userNumber, roundsNumber, onStartNewGame }) {
   return (
     <View style={styles.screenContainer}>
       <Title>Game Over!</Title>
@@ -14,6 +16,12 @@ function GameOverScreen() {
           source={require('../assets/images/success.png')}
         />
       </View>
+      <Text style={styles.summaryTexts}>
+        Your phone needed <Text style={styles.highlight}>{userNumber}</Text>{' '}
+        rounds to guess the number
+        <Text style={styles.highlight}>{roundsNumber}</Text>.
+      </Text>
+      <PrimaryButton onPress={onStartNewGame}> Start New Game </PrimaryButton>
     </View>
   );
 }
@@ -39,5 +47,15 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
+  },
+  summaryTexts: {
+    fontFamily: 'open-sans',
+    fontSize: 24,
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  highlight: {
+    fontFamily: 'open-sans-bold',
+    color: Colors.primary500,
   },
 });
