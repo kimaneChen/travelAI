@@ -12,7 +12,7 @@ import GuessLogItem from '../components/game/GuessLogItem';
 
 export interface GameScreenProps {
   userNumber: number;
-  onGameOver: () => void;
+  onGameOver: (numberOfRounds: number) => void;
 }
 
 let minBoundary = 1;
@@ -27,9 +27,9 @@ function GameScreen(
 
   useEffect(() => {
     if (currentGuess === userNumber) {
-      onGameOver();
+      onGameOver(guessRounds.length);
     }
-  }, [currentGuess, onGameOver, userNumber]);
+  }, [currentGuess, guessRounds.length, onGameOver, userNumber]);
 
   function nextGuessHandler(direction: string) {
     if (
@@ -85,10 +85,7 @@ function GameScreen(
           </View>
         </View>
       </Card>
-      <View>
-        <Text>LOG ROUND</Text>
-      </View>
-      <View>
+      <View style={styles.listContainer}>
         <FlatList
           data={guessRounds}
           renderItem={(itemData) => (
@@ -96,9 +93,6 @@ function GameScreen(
           )}
           keyExtractor={(item, key) => key.toString()}
         />
-        {/* {guessRounds.map((guessRound) => (
-          <Text key={guessRound}>{guessRound}</Text>
-        ))} */}
       </View>
     </View>
   );
@@ -119,5 +113,9 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
+  },
+  listContainer: {
+    flex: 1,
+    padding: 16,
   },
 });
