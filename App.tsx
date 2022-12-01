@@ -44,7 +44,6 @@ export default function App() {
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
   if (userNumber) {
-    console.log(userNumber);
     screen = (
       <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
     );
