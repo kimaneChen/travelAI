@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
   gameScreen: {
     flex: 1,
     padding: 24,
+    alignItems: 'center',
   },
   buttons: {
     flexDirection: 'row',
