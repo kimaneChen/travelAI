@@ -6,7 +6,17 @@ import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
 import Colors from '../constants/color';
 
-function GameOverScreen({ userNumber, roundsNumber, onStartNewGame }) {
+export interface GameOverScreenProps {
+  userNumber: number;
+  roundsNumber: number;
+  onStartNewGame: () => void;
+}
+
+function GameOverScreen({
+  userNumber,
+  roundsNumber,
+  onStartNewGame,
+}: GameOverScreenProps) {
   return (
     <View style={styles.screenContainer}>
       <Title>Game Over!</Title>
