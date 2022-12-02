@@ -1,8 +1,14 @@
 import { useState } from 'react';
-import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
+import {
+  StyleSheet,
+  ImageBackground,
+  SafeAreaView,
+  Dimensions,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { StatusBar } from 'expo-status-bar';
 
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
@@ -60,22 +66,27 @@ export default function App() {
   }
 
   return (
-    <LinearGradient
-      colors={[Colors.primary700, Colors.accent500]}
-      style={styles.appContainer}
-    >
-      <ImageBackground
-        // eslint-disable-next-line global-require
-        source={require('./assets/images/background.png')}
-        resizeMode="cover"
-        style={styles.imageBackground}
-        imageStyle={styles.bacgroundImage}
+    <>
+      <StatusBar style="inverted" />
+      <LinearGradient
+        colors={[Colors.primary700, Colors.accent500]}
+        style={styles.appContainer}
       >
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          // eslint-disable-next-line global-require
+          source={require('./assets/images/background.png')}
+          resizeMode="cover"
+          style={styles.imageBackground}
+          imageStyle={styles.bacgroundImage}
+        >
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
+
+const deviceHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   appContainer: {

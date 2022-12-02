@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Platform } from 'react-native';
 
 import Colors from '../../constants/color';
 
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    borderWidth: 2,
+    borderWidth: Platform.select({ ios: 0, android: 2 }),
     borderColor: 'white',
     borderRadius: 4,
     padding: 12,

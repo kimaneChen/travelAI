@@ -1,11 +1,16 @@
 import { View, Text, StyleSheet } from 'react-native';
 import Colors from '../../constants/color';
 
-function GuessLogItem({ roundNumber, guess }) {
+export interface GuessLogItemProps {
+  roundNumber: number;
+  guess: number;
+}
+
+function GuessLogItem({ roundNumber, guess }: GuessLogItemProps) {
   return (
     <View style={styles.listItem}>
-      <Text style={styles.itermText}> #{roundNumber}</Text>
-      <Text style={styles.itermText}> Opponent Guess: {guess}</Text>
+      <Text style={styles.itemText}> #{roundNumber}</Text>
+      <Text style={styles.itemText}> Opponent Guess: {guess}</Text>
     </View>
   );
 }
@@ -28,7 +33,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 3,
   },
-  itermText: {
+  itemText: {
     fontFamily: 'open-sans',
   },
 });
