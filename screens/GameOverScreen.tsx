@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import { Image, View, StyleSheet, Text } from 'react-native';
+import { Image, View, StyleSheet, Text, Dimensions } from 'react-native';
 
 import PrimaryButton from '../components/ui/PrimaryButton';
 
@@ -38,6 +38,8 @@ function GameOverScreen({
 
 export default GameOverScreen;
 
+const deviceWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
@@ -46,8 +48,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    width: 300,
-    height: 300,
+    width: deviceWidth < 380 ? 150 : 280,
+    height: deviceWidth < 380 ? 150 : 280,
     borderRadius: 150,
     borderWidth: 3,
     borderColor: Colors.primary800,
